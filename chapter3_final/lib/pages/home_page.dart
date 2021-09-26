@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/res/assets.dart';
 import 'package:flutter_academy/widgets/call_to_action.dart';
@@ -14,7 +15,8 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           AppBar(
             title: Text('Flutter Academy'),
-            elevation: 0,
+            elevation: kIsWeb ? 0 : null,
+            centerTitle: kIsWeb ? false : null,
           ),
           Header(),
           const SizedBox(height: 40.0),

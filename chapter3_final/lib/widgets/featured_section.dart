@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_academy/res/responsive.dart';
+import 'package:flutter_academy/widgets/responsive_gap.dart';
 
 class FeaturedSection extends StatelessWidget {
   const FeaturedSection({
@@ -20,19 +22,22 @@ class FeaturedSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      width: 1340,
+      height: width > ScreenSizes.md ? null : 600,
       padding: const EdgeInsets.all(32.0),
-      child: Row(
+      child: Flex(
+        direction: getAxis(context),
         children: [
-          if (imageLeft)
+          if (imageLeft || width <= ScreenSizes.md) ...[
             Expanded(
               child: Image.asset(
                 image,
-                height: 450,
+                fit: BoxFit.cover,
               ),
             ),
-          const SizedBox(width: 20.0),
+            const ResponsiveGap(gap: 20.0),
+          ],
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,6 +45,9 @@ class FeaturedSection extends StatelessWidget {
                 Text(
                   title,
                   style: Theme.of(context).textTheme.headline4,
+                  textAlign: width <= ScreenSizes.md
+                      ? TextAlign.center
+                      : TextAlign.start,
                 ),
                 const SizedBox(height: 20.0),
                 Text(
@@ -47,6 +55,9 @@ class FeaturedSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         fontSize: 18.0,
                       ),
+                  textAlign: width <= ScreenSizes.md
+                      ? TextAlign.center
+                      : TextAlign.start,
                 ),
                 const SizedBox(height: 20.0),
                 Center(
@@ -58,14 +69,15 @@ class FeaturedSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 20.0),
-          if (!imageLeft)
+          if (!imageLeft && width > ScreenSizes.md) ...[
+            const ResponsiveGap(gap: 20.0),
             Expanded(
               child: Image.asset(
                 image,
-                height: 450,
+                fit: BoxFit.cover,
               ),
             ),
+          ],
         ],
       ),
     );
