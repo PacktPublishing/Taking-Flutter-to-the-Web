@@ -27,7 +27,7 @@ class FeaturedSection extends StatelessWidget {
       height: width > ScreenSizes.md ? null : 600,
       padding: const EdgeInsets.all(32.0),
       child: Flex(
-        direction: getAxis(context),
+        direction: getAxis(width),
         children: [
           if (imageLeft || width <= ScreenSizes.md) ...[
             Expanded(

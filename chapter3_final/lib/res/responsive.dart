@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-Axis getAxis(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
+Axis getAxis(double width) {
   return width > ScreenSizes.md ? Axis.horizontal : Axis.vertical;
 }
 
