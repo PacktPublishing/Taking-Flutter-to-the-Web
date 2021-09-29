@@ -16,6 +16,7 @@ class CallToAction extends StatelessWidget {
           Text(
             "Ready to Begin Learning",
             style: Theme.of(context).textTheme.headline2,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20.0),
           ElevatedButton(
