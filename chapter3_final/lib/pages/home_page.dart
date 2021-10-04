@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/res/assets.dart';
+import 'package:flutter_academy/res/responsive.dart';
 import 'package:flutter_academy/widgets/call_to_action.dart';
 import 'package:flutter_academy/widgets/course_card.dart';
 import 'package:flutter_academy/widgets/featured_section.dart';
@@ -17,6 +18,38 @@ class HomePage extends StatelessWidget {
             title: Text('Flutter Academy'),
             elevation: kIsWeb ? 0 : null,
             centerTitle: kIsWeb ? false : null,
+            actions: (MediaQuery.of(context).size.width <= ScreenSizes.md)
+                ? null
+                : [
+                    TextButton(
+                      child: Text("Home"),
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text("Courses"),
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text("About"),
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text("Contact"),
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
           ),
           Header(),
           const SizedBox(height: 40.0),
@@ -88,6 +121,41 @@ class HomePage extends StatelessWidget {
           Footer(),
         ],
       ),
+      drawer: MediaQuery.of(context).size.width > ScreenSizes.md
+          ? null
+          : Drawer(
+              child: ListView(
+                children: [
+                  Container(
+                    color: Theme.of(context).primaryColor,
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      "Flutter Academy",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          ?.copyWith(color: Colors.white),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text("Home"),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text("Courses"),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text("About"),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text("Contact"),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }
