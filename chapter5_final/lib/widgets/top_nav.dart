@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/pages/about_page.dart';
 import 'package:flutter_academy/res/responsive.dart';
 
 class TopNav extends StatelessWidget {
@@ -29,7 +28,9 @@ class TopNav extends StatelessWidget {
                 style: TextButton.styleFrom(
                   primary: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/courses');
+                },
               ),
               TextButton(
                 child: Text("About"),
@@ -45,7 +46,9 @@ class TopNav extends StatelessWidget {
                 style: TextButton.styleFrom(
                   primary: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/contact');
+                },
               ),
             ],
     );
