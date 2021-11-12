@@ -20,7 +20,9 @@ class TopNav extends StatelessWidget {
                 style: TextButton.styleFrom(
                   primary: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/');
+                },
               ),
               TextButton(
                 child: Text("Courses"),
@@ -35,8 +37,7 @@ class TopNav extends StatelessWidget {
                   primary: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => AboutPage()));
+                  Navigator.of(context).pushNamed('/about');
                 },
               ),
               TextButton(

@@ -22,7 +22,9 @@ class DrawerNav extends StatelessWidget {
           ),
           ListTile(
             title: Text("Home"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed('/');
+            },
           ),
           ListTile(
             title: Text("Courses"),
@@ -31,8 +33,7 @@ class DrawerNav extends StatelessWidget {
           ListTile(
             title: Text("About"),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => AboutPage()));
+              Navigator.of(context).pushNamed('/about');
             },
           ),
           ListTile(
