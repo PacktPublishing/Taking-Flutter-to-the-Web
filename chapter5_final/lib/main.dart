@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/pages/about_page.dart';
+import 'package:flutter_academy/pages/contact_page.dart';
+import 'package:flutter_academy/pages/courses_page.dart';
 import 'package:flutter_academy/pages/home_page.dart';
 
 void main() {
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) => HomePage(),
         '/about': (_) => AboutPage(),
+        '/contact': (_) => ContactPage(),
+        '/courses': (_) => CoursesPage(),
       },
     );
   }
