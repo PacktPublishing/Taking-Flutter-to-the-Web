@@ -12,7 +12,9 @@ class CourseDetailsPage extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        children: <Widget>[],
+        children: <Widget>[
+          Text("Course id: $courseId"),
+        ],
       ),
     );
   }

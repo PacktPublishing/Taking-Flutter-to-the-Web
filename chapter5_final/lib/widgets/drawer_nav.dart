@@ -28,7 +28,9 @@ class DrawerNav extends StatelessWidget {
           ),
           ListTile(
             title: Text("Courses"),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed('/courses');
+            },
           ),
           ListTile(
             title: Text("About"),

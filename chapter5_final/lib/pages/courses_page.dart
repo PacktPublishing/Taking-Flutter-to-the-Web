@@ -8,7 +8,6 @@ class CoursesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
         children: <Widget>[
           TopNav(),
         ],
