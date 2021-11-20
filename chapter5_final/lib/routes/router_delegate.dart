@@ -28,11 +28,15 @@ class AppRouterDelegate extends RouterDelegate<Uri>
         if (!route.didPop(result)) {
           return false;
         }
-        _path = _path.replace(
-            pathSegments:
-                _path.pathSegments.getRange(0, _path.pathSegments.length - 1));
-        _safeNotifyListeners();
-        return true;
+
+        if (pages.isNotEmpty) {
+          _path = _path.replace(
+              pathSegments: _path.pathSegments
+                  .getRange(0, _path.pathSegments.length - 1));
+          _safeNotifyListeners();
+          return true;
+        }
+        return false;
       },
     );
   }
@@ -46,54 +50,54 @@ class AppRouterDelegate extends RouterDelegate<Uri>
     _safeNotifyListeners();
   }
 
-  List<Page> _getRoutes(Uri path) {
-    final pages = [
-      MaterialPage(child: HomePage(), key: ValueKey('home')),
-    ];
-    if (path.pathSegments.length == 0) {
-      return pages;
-    }
-    switch (path.pathSegments[0]) {
-      case 'contacts':
-        pages.add(MaterialPage(
-          key: ValueKey('/contacts'),
-          child: ContactPage(),
-        ));
-        break;
-      case 'about':
-        pages.add(MaterialPage(
-          key: ValueKey('/about'),
-          child: AboutPage(),
-        ));
-        break;
-      case 'courses':
-        pages.add(MaterialPage(
-          key: ValueKey('/courses'),
-          child: CoursesPage(),
-        ));
-        break;
-      default:
-        pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
-        break;
-    }
-    if (path.pathSegments.length == 2) {
-      if (path.pathSegments[0] == 'courses') {
-        pages.add(
-          MaterialPage(
-            key: ValueKey('/course/${path.pathSegments[1]}'),
-            child: CourseDetailsPage(
-              courseId: int.parse(
-                path.pathSegments[1],
-              ),
-            ),
-          ),
-        );
-      } else {
-        pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
-      }
-    }
+List<Page> _getRoutes(Uri path) {
+  final pages = [
+    MaterialPage(child: HomePage(), key: ValueKey('home')),
+  ];
+  if (path.pathSegments.length == 0) {
     return pages;
   }
+  switch (path.pathSegments[0]) {
+    case 'contacts':
+      pages.add(MaterialPage(
+        key: ValueKey('contacts'),
+        child: ContactPage(),
+      ));
+      break;
+    case 'about':
+      pages.add(MaterialPage(
+        key: ValueKey('about'),
+        child: AboutPage(),
+      ));
+      break;
+    case 'courses':
+      pages.add(MaterialPage(
+        key: ValueKey('courses'),
+        child: CoursesPage(),
+      ));
+      break;
+    default:
+      pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
+      break;
+  }
+  if (path.pathSegments.length == 2) {
+    if (path.pathSegments[0] == 'courses') {
+      pages.add(
+        MaterialPage(
+          key: ValueKey('course.${path.pathSegments[1]}'),
+          child: CourseDetailsPage(
+            courseId: int.parse(
+              path.pathSegments[1],
+            ),
+          ),
+        ),
+      );
+    } else {
+      pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
+    }
+  }
+  return pages;
+}
 
   void _safeNotifyListeners() {
     // this is a hack to fix the following error:
