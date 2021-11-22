@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_academy/main.dart';
 import 'package:flutter_academy/res/assets.dart';
 import 'package:flutter_academy/res/responsive.dart';
 import 'package:flutter_academy/widgets/call_to_action.dart';
@@ -35,7 +36,9 @@ class HomePage extends StatelessWidget {
                   image: Assets.course,
                   description:
                       "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way.",
-                  onActionPressed: () {},
+                  onActionPressed: () {
+                    routerDelegate.go('/courses/taking-flutter-to-web');
+                  },
                 ),
                 const SizedBox(width: 20.0),
                 CourseCard(
@@ -43,7 +46,9 @@ class HomePage extends StatelessWidget {
                   image: Assets.course,
                   description:
                       "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way.",
-                  onActionPressed: () {},
+                  onActionPressed: () {
+                    routerDelegate.go('/courses/taking-flutter-to-web-2');
+                  },
                 ),
               ],
             ),
