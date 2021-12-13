@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CourseDetailsPage extends StatelessWidget {
-  final int courseId;
+  final String courseId;
 
   const CourseDetailsPage({Key? key, required this.courseId}) : super(key: key);
   @override

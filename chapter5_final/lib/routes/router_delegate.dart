@@ -50,54 +50,53 @@ class AppRouterDelegate extends RouterDelegate<Uri>
     _safeNotifyListeners();
   }
 
-List<Page> _getRoutes(Uri path) {
-  final pages = [
-    MaterialPage(child: HomePage(), key: ValueKey('home')),
-  ];
-  if (path.pathSegments.length == 0) {
-    return pages;
-  }
-  switch (path.pathSegments[0]) {
-    case 'contacts':
-      pages.add(MaterialPage(
-        key: ValueKey('contacts'),
-        child: ContactPage(),
-      ));
-      break;
-    case 'about':
-      pages.add(MaterialPage(
-        key: ValueKey('about'),
-        child: AboutPage(),
-      ));
-      break;
-    case 'courses':
-      pages.add(MaterialPage(
-        key: ValueKey('courses'),
-        child: CoursesPage(),
-      ));
-      break;
-    default:
-      pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
-      break;
-  }
-  if (path.pathSegments.length == 2) {
-    if (path.pathSegments[0] == 'courses') {
-      pages.add(
-        MaterialPage(
-          key: ValueKey('course.${path.pathSegments[1]}'),
-          child: CourseDetailsPage(
-            courseId: int.parse(
-              path.pathSegments[1],
+  List<Page> _getRoutes(Uri path) {
+    final pages = [
+      MaterialPage(child: HomePage(), key: ValueKey('home')),
+    ];
+    if (path.pathSegments.length == 0) {
+      return pages;
+    }
+    switch (path.pathSegments[0]) {
+      case 'contact':
+        pages.add(MaterialPage(
+          key: ValueKey('contact'),
+          child: ContactPage(),
+        ));
+        break;
+      case 'about':
+        pages.add(MaterialPage(
+          key: ValueKey('about'),
+          child: AboutPage(),
+        ));
+        break;
+      case 'courses':
+        pages.add(MaterialPage(
+          key: ValueKey('courses'),
+          child: CoursesPage(),
+        ));
+        break;
+      default:
+        pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
+        break;
+    }
+    if (path.pathSegments.length == 2) {
+      if (path.pathSegments[0] == 'courses') {
+        pages.add(
+          MaterialPage(
+            key: ValueKey('course.${path.pathSegments[1]}'),
+            child: CourseDetailsPage(
+              courseId: 
+                path.pathSegments[1],
             ),
           ),
-        ),
-      );
-    } else {
-      pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
+        );
+      } else {
+        pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
+      }
     }
+    return pages;
   }
-  return pages;
-}
 
   void _safeNotifyListeners() {
     // this is a hack to fix the following error:
