@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/res/responsive.dart';
-import 'package:flutter_academy/widgets/drawer_nav.dart';
-import 'package:flutter_academy/widgets/top_nav.dart';
+import 'package:flutter_academy/app/res/responsive.dart';
+import 'package:flutter_academy/app/widgets/drawer_nav.dart';
+import 'package:flutter_academy/app/widgets/top_nav.dart';
 
 class ContactPage extends StatelessWidget {
   @override

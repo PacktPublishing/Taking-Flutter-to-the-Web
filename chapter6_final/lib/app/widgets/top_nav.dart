@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_academy/app/res/responsive.dart';
 import 'package:flutter_academy/main.dart';
-import 'package:flutter_academy/res/responsive.dart';
 
 class TopNav extends StatelessWidget {
   const TopNav({Key? key}) : super(key: key);

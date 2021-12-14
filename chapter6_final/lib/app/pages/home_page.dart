@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/res/assets.dart';
-import 'package:flutter_academy/res/responsive.dart';
-import 'package:flutter_academy/widgets/call_to_action.dart';
-import 'package:flutter_academy/widgets/course_card.dart';
-import 'package:flutter_academy/widgets/drawer_nav.dart';
-import 'package:flutter_academy/widgets/featured_section.dart';
-import 'package:flutter_academy/widgets/footer.dart';
-import 'package:flutter_academy/widgets/header.dart';
-import 'package:flutter_academy/widgets/top_nav.dart';
+import 'package:flutter_academy/app/res/assets.dart';
+import 'package:flutter_academy/app/res/responsive.dart';
+import 'package:flutter_academy/app/widgets/call_to_action.dart';
+import 'package:flutter_academy/app/widgets/course_card.dart';
+import 'package:flutter_academy/app/widgets/drawer_nav.dart';
+import 'package:flutter_academy/app/widgets/featured_section.dart';
+import 'package:flutter_academy/app/widgets/footer.dart';
+import 'package:flutter_academy/app/widgets/header.dart';
+import 'package:flutter_academy/app/widgets/top_nav.dart';
 
 class HomePage extends StatelessWidget {
   @override
