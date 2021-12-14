@@ -4,9 +4,7 @@ import 'package:flutter_academy/infrastructure/model/course.dart';
 
 class CourseService {
   Future<List<Course>> getCourses() async {
-    final courses = rootBundle.loadStructuredData<List<Course>>(
-        'asset/data/courses.json',
-        (value) => jsonDecode(value).map((course) => Course.fromMap(course)));
-    return courses;
+    final courses = await rootBundle.loadString('data/courses.json');
+    return List<Course>.from(jsonDecode(courses).map((course) => Course.fromMap(course)));
   }
 }
