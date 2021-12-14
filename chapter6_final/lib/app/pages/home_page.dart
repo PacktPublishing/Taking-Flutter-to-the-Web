@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/app/res/assets.dart';
 import 'package:flutter_academy/app/res/responsive.dart';
+import 'package:flutter_academy/app/view_models/course_list_vm.dart';
 import 'package:flutter_academy/app/widgets/call_to_action.dart';
 import 'package:flutter_academy/app/widgets/course_card.dart';
 import 'package:flutter_academy/app/widgets/drawer_nav.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_academy/app/widgets/featured_section.dart';
 import 'package:flutter_academy/app/widgets/footer.dart';
 import 'package:flutter_academy/app/widgets/header.dart';
 import 'package:flutter_academy/app/widgets/top_nav.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,27 +28,24 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 10.0),
           Container(
             height: 450,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                const SizedBox(width: 20.0),
-                CourseCard(
-                  title: "Taking Flutter to Web",
-                  image: Assets.course,
-                  description:
-                      "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way.",
-                  onActionPressed: () {},
-                ),
-                const SizedBox(width: 20.0),
-                CourseCard(
-                  title: "Taking Flutter to Web",
-                  image: Assets.course,
-                  description:
-                      "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way.",
-                  onActionPressed: () {},
-                ),
-              ],
-            ),
+            child: Consumer(builder: (context, ref, child) {
+              final courses = ref.watch(courseListVM);
+              return ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  ...courses.map(
+                    (course) => Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: CourseCard(
+                          description: course.description,
+                          title: course.title,
+                          image: course.image,
+                          onActionPressed: () {},
+                        )),
+                  ),
+                ],
+              );
+            }),
           ),
           // Featured section
           Center(
