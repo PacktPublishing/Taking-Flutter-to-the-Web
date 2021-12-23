@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'app/routes/app_route_parser.dart';
-import 'app/routes/router_delegate.dart';
+import 'app/routes/app_route_parser.router.dart';
+import 'app/routes/router_delegate.router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/app/res/responsive.dart';
-import 'package:flutter_academy/app/widgets/responsive_gap.dart';
+import 'package:flutter_academy/app/res/responsive.res.dart';
+import 'package:flutter_academy/app/widgets/responsive_gap.widget.dart';
 
 class FeaturedSection extends StatelessWidget {
   const FeaturedSection({

@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/app/pages/about_page.dart';
-import 'package:flutter_academy/app/pages/contact_page.dart';
-import 'package:flutter_academy/app/pages/course_details_page.dart';
-import 'package:flutter_academy/app/pages/courses_page.dart';
-import 'package:flutter_academy/app/pages/error_404_page.dart';
-import 'package:flutter_academy/app/pages/home_page.dart';
+import 'package:flutter_academy/app/pages/about.page.dart';
+import 'package:flutter_academy/app/pages/contact.page.dart';
+import 'package:flutter_academy/app/pages/course_details.page.dart';
+import 'package:flutter_academy/app/pages/courses.page.dart';
+import 'package:flutter_academy/app/pages/error_404.page.dart';
+import 'package:flutter_academy/app/pages/home.page.dart';
 
 class AppRouterDelegate extends RouterDelegate<Uri>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<Uri> {
