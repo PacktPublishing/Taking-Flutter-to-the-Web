@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/app/views/login.view.dart';
 
-class ContactPage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
