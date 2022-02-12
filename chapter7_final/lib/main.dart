@@ -3,8 +3,11 @@ import 'package:flutter_academy/app/view_models/theme_mode.vm.dart';
 import 'app/routes/app_route_parser.router.dart';
 import 'app/routes/router_delegate.router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   runApp(ProviderScope(child: MyApp()));
 }
 
@@ -14,10 +17,9 @@ class MyApp extends StatelessWidget {
   final _routeParser = AppRouteInformationParser();
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final themeModeVM = ref.watch(themeModeProvider);
-        return AnimatedBuilder(
+    return Consumer(builder: (context, ref, child) {
+      final themeModeVM = ref.watch(themeModeProvider);
+      return AnimatedBuilder(
           animation: themeModeVM,
           builder: (context, child) {
             return MaterialApp.router(
@@ -27,15 +29,13 @@ class MyApp extends StatelessWidget {
                 primarySwatch: Colors.blue,
               ),
               darkTheme: ThemeData.dark().copyWith(
-                primaryColor: Colors.blue, 
+                primaryColor: Colors.blue,
               ),
               themeMode: themeModeVM.themeMode,
               routerDelegate: routerDelegate,
               routeInformationParser: _routeParser,
             );
-          }
-        );
-      }
-    );
+          });
+    });
   }
 }

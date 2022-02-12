@@ -19,6 +19,7 @@ class CoursesView extends StatelessWidget {
             (course) => Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: CourseCard(
+                  id: course.course.id,
                   description: course.description,
                   title: course.title,
                   image: course.image,
