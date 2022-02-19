@@ -22,7 +22,13 @@ class WatchlistVM extends StateNotifier<List<CourseVM>> {
 
   Future<void> getWatchlist() async {
     final watchlist = await _watchlistService.getWatchlist();
-    this.state = [...watchlist.map((e) => CourseVM(Course.fromMap(e)))];
+    var courses = [];
+    for (final course in watchlist) {
+      courses = [CourseVM(Course.fromMap(course)), ...this.state];
+    }
+    this.state = [
+      ...courses
+    ];
   }
 
   bool isInWatchlist(int id) {
@@ -30,4 +36,5 @@ class WatchlistVM extends StateNotifier<List<CourseVM>> {
   }
 }
 
-final watchlistVM = StateNotifierProvider<WatchlistVM, List<CourseVM>>((_) => WatchlistVM(WatchlistService.instance));
+final watchlistVM = StateNotifierProvider<WatchlistVM, List<CourseVM>>(
+    (_) => WatchlistVM(WatchlistService.instance));

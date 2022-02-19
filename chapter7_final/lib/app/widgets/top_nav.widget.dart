@@ -45,6 +45,15 @@ class TopNav extends StatelessWidget {
                 },
               ),
               TextButton(
+                onPressed: () {
+                  routerDelegate.go('/watchlist');
+                },
+                child: Text("Watchlist"),
+                style: TextButton.styleFrom(
+                  primary: Colors.white,
+                ),
+              ),
+              TextButton(
                 child: Text("Login"),
                 style: TextButton.styleFrom(
                   primary: Colors.white,

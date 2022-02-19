@@ -2,25 +2,25 @@
   {
     "id": 1,
     "title": "Taking Flutter to Web",
-    "image": "Assets.course",
+    "image": "assets/images/course.png",
     "description": "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way."
   },
   {
     "id": 2,
     "title": "Taking Flutter to Web",
-    "image": "Assets.course",
+    "image": "assets/images/course.png",
     "description": "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way."
   },
   {
     "id": 3,
     "title": "Taking Flutter to Web",
-    "image": "Assets.course",
+    "image": "assets/images/course.png",
     "description": "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way."
   },
   {
     "id": 4,
     "title": "Taking Flutter to Web",
-    "image": "Assets.course",
+    "image": "assets/images/course.png",
     "description": "Flutter web is stable. But there are no proper course focused on Flutter web. So, In this course we will learn what Flutter web is good for and we will build a production grade application along the way."
   }
 ]

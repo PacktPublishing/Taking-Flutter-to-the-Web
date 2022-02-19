@@ -32,7 +32,7 @@ class CourseCard extends StatelessWidget {
             children: [
               Image.asset(
                 image,
-                height: 200,
+                height: 150,
                 fit: BoxFit.cover,
               ),
               Padding(
@@ -42,12 +42,19 @@ class CourseCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(description),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    description,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
               ),
               Center(
                 child: Consumer(builder: (context, ref, child) {
+                  ref.watch(watchlistVM);
                   final isInWatchlist =
                       ref.watch(watchlistVM.notifier).isInWatchlist(id);
                   return IconButton(
@@ -66,7 +73,7 @@ class CourseCard extends StatelessWidget {
                             );
                       }
                     },
-                    icon: Icon(Icons.add),
+                    icon: Icon(isInWatchlist ? Icons.clear : Icons.add),
                   );
                 }),
               ),

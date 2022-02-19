@@ -21,12 +21,12 @@ class WatchlistService {
   }
 
   Future<void> removeFromWatchlist(int id) async {
-    final box = await Hive.openBox(boxName);
+    final box = await Hive.openBox<Map<String, dynamic>>(boxName);
     box.delete(id);
   }
 
   Future<bool> isInWatchlist(int id) async {
-    final box = await Hive.openBox(boxName);
+    final box = await Hive.openBox<Map<String, dynamic>>(boxName);
     return box.containsKey(id);
   }
 

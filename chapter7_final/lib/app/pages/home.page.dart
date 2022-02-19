@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Container(
-            height: 450,
+            height: 420,
             child: CoursesView(),
           ),
           // Featured section
