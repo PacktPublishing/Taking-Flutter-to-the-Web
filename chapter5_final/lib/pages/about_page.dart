@@ -10,6 +10,10 @@ class AboutPage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           TopNav(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("About Page"),
+          )
         ],
       ),
       drawer: MediaQuery.of(context).size.width > ScreenSizes.md
