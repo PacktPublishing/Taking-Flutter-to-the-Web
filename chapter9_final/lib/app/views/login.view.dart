@@ -36,8 +36,8 @@ class _LoginViewState extends State<LoginView> {
           const SizedBox(height: 20.0),
           Consumer(builder: (context, ref, child) {
             return ElevatedButton(
-              onPressed: () {
-                if (ref
+              onPressed: () async {
+                if (await ref
                     .read(authVM)
                     .login(email: _email.text, password: _password.text)) {
                   //logged in
@@ -48,7 +48,22 @@ class _LoginViewState extends State<LoginView> {
               },
               child: Text("Login"),
             );
-          })
+          }),
+          Consumer(builder: (context, ref, child) {
+            return ElevatedButton(
+              onPressed: () async {
+                if (await ref
+                    .read(authVM)
+                    .anonymousLogin()) {
+                  //logged in
+                } else {
+                  // error
+                  debugPrint(ref.read(authVM).error);
+                }
+              },
+              child: Text("Anonymous Login"),
+            );
+          }),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter_academy/infrastructure/res/course.service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CourseListVM extends StateNotifier<List<CourseVM>> {
+  
   CourseListVM() : super(const []) {
     fetchCourses();
   }

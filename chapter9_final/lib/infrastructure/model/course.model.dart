@@ -1,28 +1,36 @@
 import 'dart:convert';
 
 class Course {
-  final int id;
+  final String id;
   final String title;
   final String description;
   final String image;
+  final String status;
+  final int publishedDate;
   Course({
     required this.id,
     required this.title,
     required this.description,
     required this.image,
+    required this.status,
+    required this.publishedDate,
   });
 
   Course copyWith({
-    int? id,
+    String? id,
     String? title,
     String? description,
     String? image,
+    String? status,
+    int? publishedDate,
   }) {
     return Course(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       image: image ?? this.image,
+      status: status ?? this.status,
+      publishedDate: publishedDate ?? this.publishedDate,
     );
   }
 
@@ -32,15 +40,19 @@ class Course {
       'title': title,
       'description': description,
       'image': image,
+      'status': status,
+      'published_date': publishedDate,
     };
   }
 
   factory Course.fromMap(Map<String, dynamic> map) {
     return Course(
-      id: map['id'],
-      title: map['title'],
-      description: map['description'],
-      image: map['image'],
+      id: map['\$id'] ?? '',
+      title: map['title'] ?? '',
+      description: map['description'] ?? '',
+      image: map['image'] ?? '',
+      status: map['status'] ?? 'Draft',
+      publishedDate: map['published_date']?.toInt() ?? 0,
     );
   }
 
@@ -50,25 +62,29 @@ class Course {
 
   @override
   String toString() {
-    return 'Course(id: $id, title: $title, description: $description, image: $image)';
+    return 'Course(id: $id, title: $title, description: $description, image: $image, status: $status, publishedDate: $publishedDate)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Course &&
-      other.id == id &&
-      other.title == title &&
-      other.description == description &&
-      other.image == image;
+        other.id == id &&
+        other.title == title &&
+        other.description == description &&
+        other.image == image &&
+        other.status == status &&
+        other.publishedDate == publishedDate;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      title.hashCode ^
-      description.hashCode ^
-      image.hashCode;
+        title.hashCode ^
+        description.hashCode ^
+        image.hashCode ^
+        status.hashCode ^
+        publishedDate.hashCode;
   }
 }

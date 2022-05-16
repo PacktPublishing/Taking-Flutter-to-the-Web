@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_academy/app/view_models/auth.vm.dart';
+import 'package:flutter_academy/app/view_models/course.vm.dart';
 import 'package:flutter_academy/app/view_models/watchlist.vm.dart';
 import 'package:flutter_academy/infrastructure/model/course.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +15,7 @@ class CourseCard extends StatelessWidget {
     required this.description,
   }) : super(key: key);
 
-  final int id;
+  final String id;
   final String image;
   final String title;
   final Function() onActionPressed;
@@ -59,18 +61,19 @@ class CourseCard extends StatelessWidget {
                       ref.watch(watchlistVM.notifier).isInWatchlist(id);
                   return IconButton(
                     onPressed: () {
+                      if (ref.watch(authVM.notifier).user == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'You must be logged in to add to watchlist'),
+                          ),
+                        );
+                      }
                       if (isInWatchlist) {
                         ref.read(watchlistVM.notifier).removeFromWatchlist(id);
                       } else {
                         ref.read(watchlistVM.notifier).addToWatchlist(
-                              id,
-                              Course(
-                                id: id,
-                                title: title,
-                                description: description,
-                                image: image,
-                              ),
-                            );
+                            id, ref.watch(authVM.notifier).user!.id);
                       }
                     },
                     icon: Icon(isInWatchlist ? Icons.clear : Icons.add),

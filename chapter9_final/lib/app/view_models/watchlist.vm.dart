@@ -1,4 +1,3 @@
-import 'package:flutter_academy/infrastructure/model/course.model.dart';
 import 'package:flutter_academy/infrastructure/res/watchlist.service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'course.vm.dart';
@@ -10,12 +9,12 @@ class WatchlistVM extends StateNotifier<List<CourseVM>> {
     getWatchlist();
   }
 
-  Future<void> addToWatchlist(int id, Course course) async {
-    await _watchlistService.addToWatchlist(id, course.toMap());
-    this.state = [CourseVM(course), ...this.state];
+  Future<void> addToWatchlist(String id, String userId) async {
+    await _watchlistService.addToWatchlist(id, userId);
+    await getWatchlist();
   }
 
-  Future<void> removeFromWatchlist(int id) async {
+  Future<void> removeFromWatchlist(String id) async {
     await _watchlistService.removeFromWatchlist(id);
     this.state = this.state.where((course) => course.course.id != id).toList();
   }
@@ -24,14 +23,12 @@ class WatchlistVM extends StateNotifier<List<CourseVM>> {
     final watchlist = await _watchlistService.getWatchlist();
     var courses = [];
     for (final course in watchlist) {
-      courses = [CourseVM(Course.fromMap(course)), ...this.state];
+      courses = [CourseVM(course), ...this.state];
     }
-    this.state = [
-      ...courses
-    ];
+    this.state = [...courses];
   }
 
-  bool isInWatchlist(int id) {
+  bool isInWatchlist(String id) {
     return this.state.where((element) => element.course.id == id).length != 0;
   }
 }
