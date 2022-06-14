@@ -1,42 +1,27 @@
-import 'package:appwrite/appwrite.dart';
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/app/view_models/user.vm.dart';
-import 'package:flutter_academy/infrastructure/res/appwrite.service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthVM extends ChangeNotifier {
-  final Account account = Account(AppwriteService.instance.client);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoggedIn = false;
   String error = '';
   UserVM? user;
+  StreamSubscription<User?>? _subscription;
 
   AuthVM() {
-    getUser();
-  }
-
-  Future<bool> getUser() async {
-    try {
-      final apUser = await account.get();
-      user = UserVM(email: apUser.email, name: apUser.name, id: apUser.$id);
-      isLoggedIn = true;
-      notifyListeners();
-      return true;
-    } on AppwriteException catch (e) {
-      isLoggedIn = false;
-      notifyListeners();
-      return false;
-    }
+    subscribe();
   }
 
   Future<bool> login({required String email, required String password}) async {
     try {
-      await account.createSession(email: email, password: password);
-      final apUser = await account.get();
-      user = UserVM(email: apUser.email, name: apUser.name, id: apUser.$id);
-      isLoggedIn = true;
-      notifyListeners();
+      _auth.signInWithEmailAndPassword(email: email, password: password);
       return true;
-    } on AppwriteException catch (e) {
+    } on FirebaseAuthException catch (e) {
+      isLoggedIn = false;
       error = e.message ?? e.toString();
       notifyListeners();
       return false;
@@ -48,11 +33,10 @@ class AuthVM extends ChangeNotifier {
       required String email,
       required String password}) async {
     try {
-      await account.create(
-          userId: 'unique()', name: name, email: email, password: password);
-      await login(email: email, password: password);
+      _auth.createUserWithEmailAndPassword(email: email, password: password);
       return true;
-    } on AppwriteException catch (e) {
+    } on FirebaseAuthException catch (e) {
+      isLoggedIn = false;
       error = e.message ?? e.toString();
       notifyListeners();
       return false;
@@ -66,16 +50,31 @@ class AuthVM extends ChangeNotifier {
     }
     error = '';
     try {
-      await account.createAnonymousSession();
-      final apUser = await account.get();
-      user = UserVM(email: 'N/A', name: 'Anonymous User', id: apUser.$id);
-      isLoggedIn = true;
-      notifyListeners();
+      await _auth.signInAnonymously();
       return true;
-    } on AppwriteException catch (e) {
-      error = e.message ?? 'Unknown error';
+    } on FirebaseAuthException catch (e) {
+      error = e.message ?? e.toString();
+      isLoggedIn = false;
+      notifyListeners();
       return false;
     }
+  }
+
+  Future<void> subscribe() async {
+    _subscription = _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        isLoggedIn = false;
+        this.user = null;
+        notifyListeners();
+      } else {
+        this.user = UserVM(
+            email: user.email ?? 'N/A',
+            name: user.displayName ?? 'N/A',
+            id: user.uid);
+        isLoggedIn = true;
+        notifyListeners();
+      }
+    });
   }
 
   bool logout() {
@@ -88,6 +87,11 @@ class AuthVM extends ChangeNotifier {
     isLoggedIn = false;
     notifyListeners();
     return true;
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
   }
 }
 
