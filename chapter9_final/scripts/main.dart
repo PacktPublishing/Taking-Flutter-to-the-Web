@@ -2,16 +2,18 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 import 'config.dart' as config;
 
 final client = Client()
-    .setEndpoint('https://[YOUR_APPWRITE_DOMAIN]/v1/')
-    .setProject('flutter-academy')
+    .setEndpoint(
+        'https://8080-appwrite-integrationfor-458k5xf89zx.ws-us45.gitpod.io/v1')
+    .setProject('6262cb3133564441c02d')
     .setKey(config.API_KEY);
 
 void main(List<String> arguments) async {
   await createCollection();
   await addCourses();
+  await createWatchlistCollection();
 }
 
-void createWatchlistCollection() async {
+Future<void> createWatchlistCollection() async {
   final db = Database(client);
   final collection = await db.createCollection(
       collectionId: 'watchlist',
@@ -38,7 +40,7 @@ final courses = [
         "Awesome course for Flutter beginners to learn the basics of Flutter framework",
     "image": "https://image-placeholder.com/image.png",
     "status": "published",
-    "date_published": DateTime.now().millisecondsSinceEpoch,
+    "published_date": DateTime.now().millisecondsSinceEpoch,
   },
 ];
 
@@ -78,7 +80,7 @@ Future<void> createCollection() async {
       collectionId: 'courses', key: 'published_date', xrequired: true);
   await Future.delayed(Duration(seconds: 5));
   await db.createIndex(
-      collectionId: 'watchlist',
+      collectionId: 'courses',
       key: 'status_index',
       type: 'key',
       attributes: ['status']);

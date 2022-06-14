@@ -49,6 +49,7 @@ class _LoginViewState extends State<LoginView> {
               child: Text("Login"),
             );
           }),
+          const SizedBox(height: 10.0),
           Consumer(builder: (context, ref, child) {
             return ElevatedButton(
               onPressed: () async {

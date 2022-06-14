@@ -59,12 +59,7 @@ class AppRouterDelegate extends RouterDelegate<Uri>
 
   List<Page> _getRoutes(Uri path, AuthVM authVM) {
     final pages = <Page>[];
-    if (authVM.isLoggedIn) {
-      pages.add(MaterialPage(child: DashboardPage(), key: ValueKey('home')));
-    } else {
-      pages.add(MaterialPage(child: HomePage(), key: ValueKey('home')));
-    }
-
+    pages.add(MaterialPage(child: HomePage(), key: ValueKey('home')));
     if (path.pathSegments.length == 0) {
       return pages;
     }

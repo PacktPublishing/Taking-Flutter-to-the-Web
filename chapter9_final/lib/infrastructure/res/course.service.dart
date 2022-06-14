@@ -6,12 +6,10 @@ import 'appwrite.service.dart';
 class CourseService {
   final database = Database(AppwriteService.instance.client);
   Future<List<Course>> getCourses() async {
-    final docs = await database.listDocuments(
-      collectionId: 'courses',
-      queries: [
-        Query.equal('status', 'published'),
-      ]
-    );
+    final docs =
+        await database.listDocuments(collectionId: 'courses', queries: [
+      Query.equal('status', 'published'),
+    ]);
     return docs
         .convertTo((data) => Course.fromMap(Map<String, dynamic>.from(data)));
   }

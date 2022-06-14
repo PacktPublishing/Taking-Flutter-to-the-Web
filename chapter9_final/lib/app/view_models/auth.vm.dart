@@ -10,6 +10,24 @@ class AuthVM extends ChangeNotifier {
   String error = '';
   UserVM? user;
 
+  AuthVM() {
+    getUser();
+  }
+
+  Future<bool> getUser() async {
+    try {
+      final apUser = await account.get();
+      user = UserVM(email: apUser.email, name: apUser.name, id: apUser.$id);
+      isLoggedIn = true;
+      notifyListeners();
+      return true;
+    } on AppwriteException catch (e) {
+      isLoggedIn = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
   Future<bool> login({required String email, required String password}) async {
     try {
       await account.createSession(email: email, password: password);

@@ -42,7 +42,9 @@ class WatchlistService {
     final docList = await db.listDocuments(collectionId: collectionId);
     final docIds = docList.documents.map((doc) => doc.$id).toList();
     final courseList = await db.listDocuments(
-        collectionId: 'courses', queries: [Query.equal('\$id', docIds)]);
+      collectionId: 'courses',
+      queries: [Query.equal('\$id', docIds)],
+    );
     return courseList
         .convertTo((p0) => Course.fromMap(Map<String, dynamic>.from(p0)));
   }
