@@ -45,20 +45,20 @@ class Course {
     };
   }
 
-  factory Course.fromMap(Map<String, dynamic> map) {
+  factory Course.fromMap(String id, Map<String, dynamic> map) {
     return Course(
       id: map['\$id'] ?? '',
       title: map['title'] ?? '',
       description: map['description'] ?? '',
       image: map['image'] ?? '',
       status: map['status'] ?? 'Draft',
-      publishedDate: map['published_date']?.toInt() ?? 0,
+      publishedDate: map['published_date']?.millisecondsSinceEpoch ?? 0,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Course.fromJson(String source) => Course.fromMap(json.decode(source));
+  factory Course.fromJson(String id, String source) => Course.fromMap(id, json.decode(source));
 
   @override
   String toString() {

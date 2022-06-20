@@ -5,9 +5,9 @@ import 'package:flutter_academy/app/pages/about.page.dart';
 import 'package:flutter_academy/app/pages/contact.page.dart';
 import 'package:flutter_academy/app/pages/course_details.page.dart';
 import 'package:flutter_academy/app/pages/courses.page.dart';
-import 'package:flutter_academy/app/pages/dashboard.page.dart';
 import 'package:flutter_academy/app/pages/error_404.page.dart';
 import 'package:flutter_academy/app/pages/home.page.dart';
+import 'package:flutter_academy/app/pages/load.page.dart';
 import 'package:flutter_academy/app/pages/login.page.dart';
 import 'package:flutter_academy/app/pages/watchlist.page.dart';
 import 'package:flutter_academy/app/view_models/auth.vm.dart';
@@ -64,6 +64,12 @@ class AppRouterDelegate extends RouterDelegate<Uri>
       return pages;
     }
     switch (path.pathSegments[0]) {
+      case 'load_courses':
+        pages.add(MaterialPage(
+          child: LoadCourses(),
+          key: ValueKey('load_courses'),
+        ));
+        break;
       case 'contacts':
         pages.add(MaterialPage(
           key: ValueKey('contacts'),
