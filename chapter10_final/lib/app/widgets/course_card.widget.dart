@@ -72,8 +72,7 @@ class CourseCard extends StatelessWidget {
                       if (isInWatchlist) {
                         ref.read(watchlistVM.notifier).removeFromWatchlist(id);
                       } else {
-                        ref.read(watchlistVM.notifier).addToWatchlist(
-                            id, ref.watch(authVM.notifier).user!.id);
+                        ref.read(watchlistVM.notifier).addToWatchlist(id);
                       }
                     },
                     icon: Icon(isInWatchlist ? Icons.clear : Icons.add),
