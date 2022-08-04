@@ -20,4 +20,4 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: chapter10_final
-          baseHref: /taking-flutter-to-web/
+          baseHref: /Taking-Flutter-to-Web/
