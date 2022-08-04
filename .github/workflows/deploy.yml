@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
-      - run: flutter pub get
+      - name: Dependencies
+        working-directory: chapter10_final
+        run: flutter pub get
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: chapter10_final
