@@ -8,29 +8,50 @@ final client = Client()
     .setKey(config.API_KEY);
 
 void main(List<String> arguments) async {
+  await createDatabase();
   await createCollection();
   await addCourses();
   await createWatchlistCollection();
 }
 
+Future<void> createDatabase() async {
+  final db = Databases(client);
+  await db.create(databaseId: 'flutter_academy_db', name: 'Flutter Academy DB');
+}
+
 Future<void> createWatchlistCollection() async {
-  final db = Database(client);
-  final collection = await db.createCollection(
-      collectionId: 'watchlist',
-      name: "Watchlist",
-      permission: 'document',
-      read: [],
-      write: []);
+  final db = Databases(client);
+  await db.createCollection(
+    databaseId: 'flutter_academy_db',
+    collectionId: 'watchlist',
+    name: "Watchlist",
+    documentSecurity: true,
+    permissions: [
+      Permission.create(Role.users()),
+    ],
+  );
   await db.createStringAttribute(
-      collectionId: 'watchlist', key: 'userId', size: 36, xrequired: true);
+    databaseId: 'flutter_academy_db',
+    collectionId: 'watchlist',
+    key: 'userId',
+    size: 36,
+    xrequired: true,
+  );
   await db.createStringAttribute(
-      collectionId: 'watchlist', key: 'courseId', size: 36, xrequired: true);
+    databaseId: 'flutter_academy_db',
+    collectionId: 'watchlist',
+    key: 'courseId',
+    size: 36,
+    xrequired: true,
+  );
   await Future.delayed(Duration(seconds: 5));
   await db.createIndex(
-      collectionId: 'watchlist',
-      key: 'course_id_index',
-      type: 'key',
-      attributes: ['courseId']);
+    databaseId: 'flutter_academy_db',
+    collectionId: 'watchlist',
+    key: 'course_id_index',
+    type: 'key',
+    attributes: ['courseId'],
+  );
 }
 
 final courses = [
@@ -45,41 +66,60 @@ final courses = [
 ];
 
 Future<void> addCourses() async {
-  final db = Database(client);
+  final db = Databases(client);
   for (final course in courses) {
     await db.createDocument(
-        collectionId: 'courses', documentId: 'unique()', data: course);
+      databaseId: 'flutter_academy_db',
+      collectionId: 'courses',
+      documentId: 'unique()',
+      data: course,
+    );
   }
 }
 
 Future<void> createCollection() async {
-  final db = Database(client);
-  final collection = await db.createCollection(
-    collectionId: 'courses',
-    name: 'Courses',
-    permission: 'document',
-    read: [],
-    write: [],
-  );
+  final db = Databases(client);
+  await db.createCollection(
+      databaseId: 'flutter_academy_db',
+      collectionId: 'courses',
+      name: 'Courses',
+      documentSecurity: true,
+      permissions: [
+        Permission.create(Role.users()),
+      ]);
   await db.createStringAttribute(
-      collectionId: 'courses', key: 'title', size: 255, xrequired: true);
+      databaseId: 'flutter_academy_db',
+      collectionId: 'courses',
+      key: 'title',
+      size: 255,
+      xrequired: true);
   await db.createStringAttribute(
+      databaseId: 'flutter_academy_db',
       collectionId: 'courses',
       key: 'description',
       size: 1000,
       xrequired: false);
   await db.createStringAttribute(
-      collectionId: 'courses', key: 'image', size: 255, xrequired: false);
+      databaseId: 'flutter_academy_db',
+      collectionId: 'courses',
+      key: 'image',
+      size: 255,
+      xrequired: false);
   await db.createStringAttribute(
+      databaseId: 'flutter_academy_db',
       collectionId: 'courses',
       key: 'status',
       size: 20,
       xrequired: false,
       xdefault: 'Draft');
   await db.createIntegerAttribute(
-      collectionId: 'courses', key: 'published_date', xrequired: true);
+      databaseId: 'flutter_academy_db',
+      collectionId: 'courses',
+      key: 'published_date',
+      xrequired: true);
   await Future.delayed(Duration(seconds: 5));
   await db.createIndex(
+      databaseId: 'flutter_academy_db',
       collectionId: 'courses',
       key: 'status_index',
       type: 'key',
