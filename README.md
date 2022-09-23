@@ -38,7 +38,7 @@ Future<bool> anonymousLogin() async {
 **Following is what you need for this book:**
 The book is for intermediate web developers looking to adopt Flutter to build cross-platform user interfaces for web and mobile. If you are an existing Flutter or Dart developer, this book will help you target the web platform efficiently. A beginner-level understanding of the Flutter framework is assumed.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-15).
+With the following software and hardware list you can run all code files present in the book (Chapter 1-11).
 
 ### Software and Hardware List
 
