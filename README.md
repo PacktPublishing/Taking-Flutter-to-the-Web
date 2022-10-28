@@ -62,7 +62,3 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 is a software engineer at Appwrite. He is also a Google Developer Expert for Flutter and Dart. He has been working in the industry as a full stack developer specializing in different technologies since 2012 for diverse clients. He also runs the Flutter Kathmandu (https://meetup.com/flutter-kathmandu) community and organizes Flutter meetups in Kathmandu to help Flutter enthusiasts come together and help each other out. He is also a speaker and mentor; he has spoken at events such as Flutter Vikings and Flutter Yatra and mentored at numerous hackathons and events in Nepal. He is also actively involved in open source building and sharing his own open source projects as well as contributing to other open source projects. You can find his open source projects at https://github.com/lohanidamodar.
 In 2015, he graduated with a BSc in computer science and information technology from Tribhuvan University, Kathmandu, Nepal. He has been using Flutter to build mobile and web applications for over 3 years.
 
-### Download a free PDF
-
- <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
-<p align="center"> <a href="https://packt.link/free-ebook/9781801817714">https://packt.link/free-ebook/9781801817714 </a> </p>
