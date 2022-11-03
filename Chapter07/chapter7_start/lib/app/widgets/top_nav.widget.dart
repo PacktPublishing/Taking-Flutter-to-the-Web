@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/app/res/responsive.res.dart';
-import 'package:flutter_academy/app/view_models/theme_mode.vm.dart';
 import 'package:flutter_academy/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -45,15 +44,6 @@ class TopNav extends StatelessWidget {
                 },
               ),
               TextButton(
-                onPressed: () {
-                  routerDelegate.go('/watchlist');
-                },
-                child: Text("Watchlist"),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                ),
-              ),
-              TextButton(
                 child: Text("Login"),
                 style: TextButton.styleFrom(
                   primary: Colors.white,
@@ -71,20 +61,6 @@ class TopNav extends StatelessWidget {
                   routerDelegate.go('/contact');
                 },
               ),
-              Consumer(builder: (context, ref, child) {
-                final themeModeVM = ref.watch(themeModeProvider);
-                return TextButton(
-                  child: Text(themeModeVM.themeMode == ThemeMode.dark
-                      ? "Light Theme"
-                      : "Dark Theme"),
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    themeModeVM.toggleThemeMode();
-                  },
-                );
-              })
             ],
     );
   }
