@@ -50,21 +50,6 @@ class _LoginViewState extends State<LoginView> {
             );
           }),
           const SizedBox(height: 10.0),
-          Consumer(builder: (context, ref, child) {
-            return ElevatedButton(
-              onPressed: () async {
-                if (await ref
-                    .read(authVM)
-                    .anonymousLogin()) {
-                  //logged in
-                } else {
-                  // error
-                  debugPrint(ref.read(authVM).error);
-                }
-              },
-              child: Text("Anonymous Login"),
-            );
-          }),
         ],
       ),
     );
