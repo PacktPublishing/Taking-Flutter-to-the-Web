@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 final courses = [
   {
@@ -12,8 +11,5 @@ final courses = [
 ];
 
 Future loadCourses() async {
-  final _db = FirebaseFirestore.instance;
-  for (final course in courses) {
-    _db.collection('courses').add(course);
-  }
+  
 }

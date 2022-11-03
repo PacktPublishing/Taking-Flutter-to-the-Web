@@ -32,9 +32,6 @@ dependencies:
   shared_preferences: ^2.0.11
   hive: ^2.0.5
   hive_flutter: ^1.1.0
-  firebase_core: ^1.17.1
-  firebase_auth: ^3.3.19
-  cloud_firestore: ^3.1.17
 
 dev_dependencies:
   flutter_test:
