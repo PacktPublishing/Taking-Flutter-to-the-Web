@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_academy/app/view_models/theme_mode.vm.dart';
 import 'app/routes/app_route_parser.router.dart';
 import 'app/routes/router_delegate.router.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  runApp(ProviderScope(child: MyApp()));
+  runApp(MyApp());
 }
 
 final routerDelegate = AppRouterDelegate();
