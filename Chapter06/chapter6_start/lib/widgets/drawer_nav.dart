@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_academy/pages/about_page.dart';
 
 class DrawerNav extends StatelessWidget {
   const DrawerNav({Key? key}) : super(key: key);

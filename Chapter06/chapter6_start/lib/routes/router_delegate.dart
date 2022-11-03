@@ -1,16 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_academy/app/pages/about.page.dart';
-import 'package:flutter_academy/app/pages/contact.page.dart';
-import 'package:flutter_academy/app/pages/course_details.page.dart';
-import 'package:flutter_academy/app/pages/courses.page.dart';
-import 'package:flutter_academy/app/pages/dashboard.page.dart';
-import 'package:flutter_academy/app/pages/error_404.page.dart';
-import 'package:flutter_academy/app/pages/home.page.dart';
-import 'package:flutter_academy/app/pages/login.page.dart';
-import 'package:flutter_academy/app/view_models/auth.vm.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_academy/pages/about_page.dart';
+import 'package:flutter_academy/pages/contact_page.dart';
+import 'package:flutter_academy/pages/course_details_page.dart';
+import 'package:flutter_academy/pages/courses_page.dart';
+import 'package:flutter_academy/pages/error_404_page.dart';
+import 'package:flutter_academy/pages/home_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<Uri>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<Uri> {
@@ -24,27 +20,25 @@ class AppRouterDelegate extends RouterDelegate<Uri>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, child) {
-      final pages = _getRoutes(_path, ref.watch(authVM));
-      return Navigator(
-        key: navigatorKey,
-        pages: pages,
-        onPopPage: (route, result) {
-          if (!route.didPop(result)) {
-            return false;
-          }
-
-          if (pages.isNotEmpty) {
-            _path = _path.replace(
-                pathSegments: _path.pathSegments
-                    .getRange(0, _path.pathSegments.length - 1));
-            _safeNotifyListeners();
-            return true;
-          }
+    final pages = _getRoutes(_path);
+    return Navigator(
+      key: navigatorKey,
+      pages: pages,
+      onPopPage: (route, result) {
+        if (!route.didPop(result)) {
           return false;
-        },
-      );
-    });
+        }
+
+        if (pages.isNotEmpty) {
+          _path = _path.replace(
+              pathSegments: _path.pathSegments
+                  .getRange(0, _path.pathSegments.length - 1));
+          _safeNotifyListeners();
+          return true;
+        }
+        return false;
+      },
+    );
   }
 
   @override
@@ -56,21 +50,17 @@ class AppRouterDelegate extends RouterDelegate<Uri>
     _safeNotifyListeners();
   }
 
-  List<Page> _getRoutes(Uri path, AuthVM authVM) {
-    final pages = <Page>[];
-    if (authVM.isLoggedIn) {
-      pages.add(MaterialPage(child: DashboardPage(), key: ValueKey('home')));
-    } else {
-      pages.add(MaterialPage(child: HomePage(), key: ValueKey('home')));
-    }
-
+  List<Page> _getRoutes(Uri path) {
+    final pages = [
+      MaterialPage(child: HomePage(), key: ValueKey('home')),
+    ];
     if (path.pathSegments.length == 0) {
       return pages;
     }
     switch (path.pathSegments[0]) {
-      case 'contacts':
+      case 'contact':
         pages.add(MaterialPage(
-          key: ValueKey('contacts'),
+          key: ValueKey('contact'),
           child: ContactPage(),
         ));
         break;
@@ -86,16 +76,6 @@ class AppRouterDelegate extends RouterDelegate<Uri>
           child: CoursesPage(),
         ));
         break;
-      case 'login':
-        if (authVM.isLoggedIn) {
-          go('/');
-          break;
-        }
-        pages.add(MaterialPage(
-          key: ValueKey('login'),
-          child: LoginPage(),
-        ));
-        break;
       default:
         pages.add(MaterialPage(child: Error404Page(), key: ValueKey('error')));
         break;
@@ -106,9 +86,8 @@ class AppRouterDelegate extends RouterDelegate<Uri>
           MaterialPage(
             key: ValueKey('course.${path.pathSegments[1]}'),
             child: CourseDetailsPage(
-              courseId: int.parse(
+              courseId: 
                 path.pathSegments[1],
-              ),
             ),
           ),
         );

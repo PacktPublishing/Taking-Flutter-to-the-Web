@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'app/routes/app_route_parser.router.dart';
-import 'app/routes/router_delegate.router.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_academy/routes/app_route_parser.dart';
+import 'package:flutter_academy/routes/router_delegate.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(MyApp());
 }
 
 final routerDelegate = AppRouterDelegate();
