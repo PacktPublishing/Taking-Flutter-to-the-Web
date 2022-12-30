@@ -69,6 +69,9 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * A Frontend Web Developer’s Guide to Testing [[Packt]](https://www.packtpub.com/product/a-front-end-web-developer-s-guide-to-testing/9781803238319) [[Amazon]](https://www.amazon.com/dp/1803238313)
 
+## Errata 
+ * Page 55 (line 4):  **flutter run -d chrome –web-renderer html** _should be_ **flutter run -d chrome --web-renderer html**
+ 
 ## Get to Know the Author
 **Damodar Lohan**
 is a software engineer at Appwrite. He is also a Google Developer Expert for Flutter and Dart. He has been working in the industry as a full stack developer specializing in different technologies since 2012 for diverse clients. He also runs the Flutter Kathmandu (https://meetup.com/flutter-kathmandu) community and organizes Flutter meetups in Kathmandu to help Flutter enthusiasts come together and help each other out. He is also a speaker and mentor; he has spoken at events such as Flutter Vikings and Flutter Yatra and mentored at numerous hackathons and events in Nepal. He is also actively involved in open source building and sharing his own open source projects as well as contributing to other open source projects. You can find his open source projects at https://github.com/lohanidamodar.
